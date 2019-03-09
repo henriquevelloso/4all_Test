@@ -7,44 +7,54 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ListViewController: UIViewController {
-
+    
     //MARK: Properties
-    private var viewModel: ListItemViewModel
+    private var viewModel: ListItemViewModel?
     
     //MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
     
     //MARK: View life cycle
-    init(viewModel: ListItemViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-
+        self.viewModel = ListItemViewModel(dataManager: DataManager.sharedInstance())
+        self.loadTableViewData()
     }
     
     //MARK: Custom functions
-    
-
-    
-    // MARK: Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func loadTableViewData() {
+        self.viewModel?.fetchItem(completion: {
+            self.tableView.reloadData()
+            self.tableView.tableFooterView = UIView()
+        })
     }
     
-
+    func loadImage(imageView:inout UIImageView, imageUrl:String, tempImage:String) {
+        
+        let url = URL(string: imageUrl)
+        imageView.kf.indicatorType = .activity
+        imageView.kf.setImage(
+            with: url,
+            placeholder: UIImage(named: tempImage),
+            options: [
+                .scaleFactor(UIScreen.main.scale),
+                .transition(.fade(1)),
+                .cacheOriginalImage
+            ])
+        {
+            result in
+            switch result {
+            case .success(let value):
+                print("Task done for: \(value.source.url?.absoluteString ?? "")")
+            case .failure(let error):
+                print("Job failed: \(error.localizedDescription)")
+            }
+        }
+        
+    }
 }
 
 //MARK: - UITableViewDelegate
@@ -52,21 +62,31 @@ extension ListViewController: UITableViewDelegate {
     
 }
 
-
 //MARK: - UITableViewDataSource
 extension ListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let lista = self.viewModel.item?.lista {
-            return lista.count
-        } else {
-            return 0
-        }
+        return self.viewModel!.itemList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "listItem", for: indexPath) as! ListItemTableViewCell
+        
+        let itemId = viewModel!.itemList[indexPath.row]
+        viewModel!.fetchItemById(itemId: itemId) { detail in
+           
+            cell.titleLabel.text = detail?.titulo
+            self.loadImage(imageView: &cell.backgroundImage, imageUrl: (detail?.urlFoto)!, tempImage: "tempBackground")
+            
+        }
+        
+        return cell
     }
-
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 52
+    }
+    
 }

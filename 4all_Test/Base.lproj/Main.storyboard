@@ -19,6 +19,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.79607843140000001" green="0.54117647059999996" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="HMU-Sc-HbG" kind="relationship" relationship="rootViewController" id="0fI-QQ-Hgs"/>
@@ -40,13 +43,57 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="yc3-nn-gNF">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="listItem" rowHeight="52" id="yc3-nn-gNF" customClass="ListItemTableViewCell" customModule="_all_Test" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yc3-nn-gNF" id="lfN-RA-TdR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tempBackground" translatesAutoresizingMaskIntoConstraints="NO" id="0TP-fn-xAn">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
+                                                </imageView>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sSH-RN-ge3">
+                                                    <rect key="frame" x="0.0" y="0.0" width="337.5" height="50.5"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="listBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Fi7-nI-bmA">
+                                                            <rect key="frame" x="0.0" y="0.0" width="337.5" height="50.5"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xP-Qz-xxB">
+                                                            <rect key="frame" x="20" y="8" width="309.5" height="34.5"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                            <color key="textColor" red="0.79607843140000001" green="0.54117647059999996" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="Fi7-nI-bmA" firstAttribute="top" secondItem="sSH-RN-ge3" secondAttribute="top" id="0MT-vU-f1K"/>
+                                                        <constraint firstItem="8xP-Qz-xxB" firstAttribute="leading" secondItem="sSH-RN-ge3" secondAttribute="leading" constant="20" id="1C1-nf-ZzH"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Fi7-nI-bmA" secondAttribute="bottom" id="Iyt-cc-vCQ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="8xP-Qz-xxB" secondAttribute="trailing" constant="8" id="esk-cl-aCy"/>
+                                                        <constraint firstItem="Fi7-nI-bmA" firstAttribute="leading" secondItem="sSH-RN-ge3" secondAttribute="leading" id="ifd-AG-xnv"/>
+                                                        <constraint firstAttribute="bottom" secondItem="8xP-Qz-xxB" secondAttribute="bottom" constant="8" id="lpx-MS-dM1"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Fi7-nI-bmA" secondAttribute="trailing" id="pRo-wI-nuj"/>
+                                                        <constraint firstItem="8xP-Qz-xxB" firstAttribute="top" secondItem="sSH-RN-ge3" secondAttribute="top" constant="8" id="y4m-Ab-AWn"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="0TP-fn-xAn" secondAttribute="bottom" id="99T-B7-7CP"/>
+                                                <constraint firstItem="0TP-fn-xAn" firstAttribute="leading" secondItem="lfN-RA-TdR" secondAttribute="leading" id="9Ro-6S-wwm"/>
+                                                <constraint firstAttribute="bottom" secondItem="sSH-RN-ge3" secondAttribute="bottom" constant="1" id="G9o-5s-136"/>
+                                                <constraint firstItem="sSH-RN-ge3" firstAttribute="top" secondItem="lfN-RA-TdR" secondAttribute="top" id="Nso-ZE-KIk"/>
+                                                <constraint firstItem="0TP-fn-xAn" firstAttribute="top" secondItem="lfN-RA-TdR" secondAttribute="top" id="XzX-tc-UgD"/>
+                                                <constraint firstItem="sSH-RN-ge3" firstAttribute="leading" secondItem="lfN-RA-TdR" secondAttribute="leading" id="nNW-67-kBf"/>
+                                                <constraint firstItem="sSH-RN-ge3" firstAttribute="width" secondItem="lfN-RA-TdR" secondAttribute="width" multiplier="0.9" id="qff-8a-May"/>
+                                                <constraint firstAttribute="trailing" secondItem="0TP-fn-xAn" secondAttribute="trailing" id="zKS-5y-0qM"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="backgroundImage" destination="0TP-fn-xAn" id="Jyv-D0-q2N"/>
+                                            <outlet property="titleLabel" destination="8xP-Qz-xxB" id="Euy-Xy-iMV"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -64,7 +111,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5QU-6k-J76"/>
                     </view>
-                    <navigationItem key="navigationItem" id="dLj-uI-mGJ"/>
+                    <navigationItem key="navigationItem" title="Listagem" id="dLj-uI-mGJ"/>
                     <connections>
                         <outlet property="tableView" destination="6oQ-bR-ed7" id="sIp-jO-sLc"/>
                         <segue destination="tIe-lN-zfH" kind="show" identifier="segueToDetail" id="DTw-Fg-HTR"/>
@@ -74,16 +121,19 @@
             </objects>
             <point key="canvasLocation" x="562" y="53"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Detail-->
         <scene sceneID="mnH-J6-MzH">
             <objects>
-                <viewController id="tIe-lN-zfH" customClass="DetailViewController" customModule="_all_Test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Detail" id="tIe-lN-zfH" customClass="DetailViewController" customModule="_all_Test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JRv-Nj-b3Y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="yLq-hL-QpX"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Detalhes" id="mrz-fA-nXe">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="HVD-K1-ofu"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="sbh-Fz-RjJ" kind="show" identifier="segueToServices" id="Cgl-ft-wyX"/>
                     </connections>
@@ -92,7 +142,7 @@
             </objects>
             <point key="canvasLocation" x="1458" y="53"/>
         </scene>
-        <!--Services View Controller-->
+        <!--Serviços-->
         <scene sceneID="LoL-F9-ZgP">
             <objects>
                 <viewController id="sbh-Fz-RjJ" customClass="ServicesViewController" customModule="_all_Test" customModuleProvider="target" sceneMemberID="viewController">
@@ -102,11 +152,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="vhV-B5-iiB"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Serviços" id="rBk-8q-Qbe"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P4E-s8-xr2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2450" y="53"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="listBackground" width="309" height="60"/>
+        <image name="tempBackground" width="1051" height="343"/>
+    </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
