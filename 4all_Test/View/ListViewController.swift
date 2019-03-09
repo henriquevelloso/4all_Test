@@ -14,6 +14,16 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        DataManager.sharedInstance().getListItens { (itens, error)  in
+            
+            _ = itens
+            
+        }
+        
+        DataManager.sharedInstance().getDetailItemById(itemId: "1") { (itens, error) in
+            _ = itens
+        }
     }
     
 

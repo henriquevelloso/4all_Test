@@ -16,7 +16,6 @@ struct Configurations: Codable {
 
 struct ApiUrl: Codable {
     
-    var host: String
     var getListItens: String
     var getDetailItemById: String
     

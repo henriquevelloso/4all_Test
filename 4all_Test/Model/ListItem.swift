@@ -9,5 +9,5 @@
 import Foundation
 
 struct ListItem: Codable {
-    var id: String
+    var lista: [String]
 }

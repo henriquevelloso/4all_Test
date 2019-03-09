@@ -4,12 +4,10 @@
 <dict>
 	<key>apiUrl</key>
 	<dict>
-		<key>host</key>
-		<string>http://dev.4all.com:3003</string>
 		<key>getListItens</key>
-		<string>/tarefa</string>
+		<string>http://dev.4all.com:3003/tarefa</string>
 		<key>getDetailItemById</key>
-		<string>/tarefa/</string>
+		<string>http://dev.4all.com:3003/tarefa/</string>
 	</dict>
 </dict>
 </plist>
