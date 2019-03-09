@@ -28,10 +28,10 @@
             </objects>
             <point key="canvasLocation" x="-302" y="53"/>
         </scene>
-        <!--List View Controller-->
+        <!--LISTA-->
         <scene sceneID="Sep-mO-DBG">
             <objects>
-                <viewController id="HMU-Sc-HbG" customClass="ListViewController" customModule="_all_Test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="LISTA" id="HMU-Sc-HbG" customClass="ListViewController" customModule="_all_Test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DUL-gU-h58">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,6 +39,20 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6oQ-bR-ed7">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="yc3-nn-gNF">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yc3-nn-gNF" id="lfN-RA-TdR">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="HMU-Sc-HbG" id="PLP-7f-85N"/>
+                                    <outlet property="delegate" destination="HMU-Sc-HbG" id="uQi-E7-C1r"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -52,6 +66,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="dLj-uI-mGJ"/>
                     <connections>
+                        <outlet property="tableView" destination="6oQ-bR-ed7" id="sIp-jO-sLc"/>
                         <segue destination="tIe-lN-zfH" kind="show" identifier="segueToDetail" id="DTw-Fg-HTR"/>
                     </connections>
                 </viewController>

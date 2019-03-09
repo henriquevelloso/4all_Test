@@ -10,7 +10,8 @@ import Foundation
 
 class ListItemViewModel {
     
-    var items: [ListItem] = []
+    var itemList: ListItem?
+    var itemDetail: DetailItem?
     var error: Error?
     var refreshing = false
     
@@ -19,15 +20,16 @@ class ListItemViewModel {
         self.dataManager = dataManager
     }
     
-    func fetch(completion: @escaping () -> Void) {
+    func fetchItem(completion: @escaping () -> Void) {
         refreshing = true
-        /*
-         dataManager.fetchItems { [weak self] (items, error) in
-         self?.items = items ?? []
-         self?.error = error
-         self?.refreshing = false
-         completion()
-         }
-         */
+        
+        dataManager.getListItens { (item, error) in
+            
+            self.itemList = item
+            self.error = error
+            self.refreshing = false
+            
+            completion()
+        }
     }
 }

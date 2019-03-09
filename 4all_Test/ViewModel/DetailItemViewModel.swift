@@ -10,7 +10,7 @@ import Foundation
 
 class DetailItemViewModel {
     
-    var items: [DetailItem] = []
+    var item: DetailItem?
     var error: Error?
     var refreshing = false
     
@@ -19,18 +19,19 @@ class DetailItemViewModel {
         self.dataManager = dataManager
     }
     
-    func fetch(completion: @escaping () -> Void) {
+    func fetchItemById(itemId: String, completion: @escaping () -> Void) {
         refreshing = true
-        /*
-         dataManager.fetchItems { [weak self] (items, error) in
-         self?.items = items ?? []
-         self?.error = error
-         self?.refreshing = false
-         completion()
-         }
-         */
         
+        dataManager.getDetailItemById(itemId: itemId) { (item, error) in
+        
+            self.item = item
+            self.error = error
+            self.refreshing = false
+            
+            completion()
+        }
     }
+
     
     
 }
