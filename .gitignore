@@ -1,0 +1,11 @@
+.DS_Store
+Build/
+Pods/
+
+4all_Test.xcodeproj/project.xcworkspace/
+4all_Test.xcodeproj/xcuserdata/
+4all_Test.xcworkspace/
+
+!Pods/Target Support Files/Pods/Pods-resources.sh
+
+
