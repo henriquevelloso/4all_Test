@@ -20,7 +20,7 @@ class ListViewController: UIViewController {
     
     //MARK: View life cycle
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad()        
         self.viewModel = ListItemViewModel(dataManager: DataManager.sharedInstance())
         self.loadTableViewData()
     }

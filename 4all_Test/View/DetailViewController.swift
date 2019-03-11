@@ -24,8 +24,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var enderecoLabel: UILabel!
     @IBOutlet weak var comentariosStackView: UIStackView!
-    
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var commentsVIew: UIView!
+    
     //MARK: View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,8 +61,6 @@ class DetailViewController: UIViewController {
                         self.mapView.setRegion(region, animated: true)
                         self.mapView.addAnnotation(annotation)
                         
-                        
-                        
                         for comment in item.comentarios {
                             let commentView = CommentView()
                             commentView.nomeLabel.text = comment.nome
@@ -73,8 +72,6 @@ class DetailViewController: UIViewController {
                             commentView.translatesAutoresizingMaskIntoConstraints = false
                             self.comentariosStackView.translatesAutoresizingMaskIntoConstraints = false
                             self.comentariosStackView.addArrangedSubview(commentView)
-                            
-                            
                         }
                     }
                 })
@@ -82,15 +79,36 @@ class DetailViewController: UIViewController {
         }
     }
     
-    //MARK: Custom functions
-   
+    //MARK: IBActions
     
-    // MARK: Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func ligarAction(_ sender: Any) {
+        guard let number = URL(string: "tel://" + (self.viewModel?.item?.telefone)!) else { return }
+        UIApplication.shared.open(number)
     }
     
+    @IBAction func servicosAction(_ sender: Any) {
+        performSegue(withIdentifier: "segueToServices", sender: nil)
+    }
+    
+    @IBAction func enderecoAction(_ sender: Any) {
+        if let item = self.viewModel?.item {
+            let message = "\(item.endereco)\n\(item.bairro)\n\(item.cidade)"
+            let alert = UIAlertController(title: "Endereço", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
+    
+    @IBAction func comentarioAction(_ sender: Any) {
+        
+        let globalPoint = comentariosStackView.superview?.convert(comentariosStackView.frame.origin, to: nil)
+        var yPosition = 0
+        if globalPoint!.y - 65 > scrollView.bounds.height {
+            yPosition = Int(scrollView.bounds.height)
+        } else {
+            yPosition = Int(globalPoint!.y - 65)
+        }
+        self.scrollView.setContentOffset(CGPoint(x: 0, y: yPosition), animated: true)
+    }
     
 }
