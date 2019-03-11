@@ -32,6 +32,23 @@ class DetailItemViewModel {
         }
     }
 
+    func setStarsImage(nota: Int) -> String {
+        
+        switch nota {
+        case 5:
+            return "star_5"
+        case 4:
+            return "star_4"
+        case 3:
+            return "star_3"
+        case 2:
+            return "star_2"
+        case 1:
+            return "star_1"
+        default:
+            return "star_0"
+        }
+    }
     
     
 }

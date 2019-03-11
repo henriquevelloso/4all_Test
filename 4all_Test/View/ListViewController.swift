@@ -16,6 +16,7 @@ class ListViewController: UIViewController {
     
     //MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var loadingView: UIView!
     
     //MARK: View life cycle
     override func viewDidLoad() {
@@ -26,63 +27,48 @@ class ListViewController: UIViewController {
     
     //MARK: Custom functions
     func loadTableViewData() {
+        self.loadingView.alpha = 1
         self.viewModel?.fetchItem(completion: {
-            self.tableView.reloadData()
-            self.tableView.tableFooterView = UIView()
+            UIView.animate(withDuration: 0.5, animations: {
+                self.tableView.tableFooterView = UIView()
+                self.tableView.reloadData()
+                self.loadingView.alpha = 0
+            })
         })
     }
     
-    func loadImage(imageView:inout UIImageView, imageUrl:String, tempImage:String) {
-        
-        let url = URL(string: imageUrl)
-        imageView.kf.indicatorType = .activity
-        imageView.kf.setImage(
-            with: url,
-            placeholder: UIImage(named: tempImage),
-            options: [
-                .scaleFactor(UIScreen.main.scale),
-                .transition(.fade(1)),
-                .cacheOriginalImage
-            ])
-        {
-            result in
-            switch result {
-            case .success(let value):
-                print("Task done for: \(value.source.url?.absoluteString ?? "")")
-            case .failure(let error):
-                print("Job failed: \(error.localizedDescription)")
-            }
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToDetail" {
+            let viewController = segue.destination as! DetailViewController
+            viewController.listId = sender as? String
         }
-        
     }
 }
 
-//MARK: - UITableViewDelegate
-extension ListViewController: UITableViewDelegate {
-    
-}
 
-//MARK: - UITableViewDataSource
-extension ListViewController: UITableViewDataSource {
+//MARK: - UITableViewDataSource, UITableViewDelegate
+extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return self.viewModel!.itemList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "listItem", for: indexPath) as! ListItemTableViewCell
-        
         let itemId = viewModel!.itemList[indexPath.row]
         viewModel!.fetchItemById(itemId: itemId) { detail in
-           
             cell.titleLabel.text = detail?.titulo
-            self.loadImage(imageView: &cell.backgroundImage, imageUrl: (detail?.urlFoto)!, tempImage: "tempBackground")
-            
+            cell.backgroundImage.loadImage(imageUrl: (detail?.urlFoto)!)
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let listId = self.viewModel?.itemList[indexPath.row]
+        performSegue(withIdentifier: "segueToDetail", sender: listId)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
