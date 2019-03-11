@@ -148,8 +148,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIW-cC-xlf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="836"/>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x59-dg-i7Q" userLabel="loadView">
+                                <rect key="frame" x="0.0" y="0.0" width="310" height="808"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="FcW-KJ-iVd">
+                                        <rect key="frame" x="136.5" y="385.5" width="37" height="37"/>
+                                        <color key="color" red="0.79607843140000001" green="0.54117647059999996" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="FcW-KJ-iVd" firstAttribute="centerY" secondItem="x59-dg-i7Q" secondAttribute="centerY" id="5mE-vz-m1j"/>
+                                    <constraint firstItem="FcW-KJ-iVd" firstAttribute="centerX" secondItem="x59-dg-i7Q" secondAttribute="centerX" id="q2O-SD-b7P"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIW-cC-xlf">
+                                <rect key="frame" x="0.0" y="0.0" width="310" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hjl-xF-dNz" userLabel="Content">
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="808"/>
@@ -208,65 +222,65 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ah8-CT-Lmv">
                                                         <rect key="frame" x="0.0" y="8" width="300" height="55"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36r-gg-l4D" userLabel="Ligar">
+                                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36r-gg-l4D" userLabel="Ligar">
                                                                 <rect key="frame" x="0.0" y="2.5" width="60" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="60" id="8v9-JJ-fn3"/>
                                                                     <constraint firstAttribute="height" constant="50" id="gCS-K1-7M1"/>
                                                                 </constraints>
-                                                                <state key="normal" title="Button" image="ligar">
+                                                                <state key="normal" image="ligar">
                                                                     <color key="titleColor" red="0.79607843140000001" green="0.54117647059999996" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="ligarAction:" destination="tIe-lN-zfH" eventType="touchUpInside" id="pbB-E1-ZcQ"/>
+                                                                    <action selector="ligarAction:" destination="tIe-lN-zfH" eventType="touchUpInside" id="ujU-Oh-igR"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ily-Gx-3zQ" userLabel="Servicos">
+                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ily-Gx-3zQ" userLabel="Servicos">
                                                                 <rect key="frame" x="60" y="2.5" width="60" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="3fQ-93-aus"/>
                                                                     <constraint firstAttribute="width" constant="60" id="KWp-C6-49e"/>
                                                                 </constraints>
-                                                                <state key="normal" title="Button" image="servicos">
+                                                                <state key="normal" image="servicos">
                                                                     <color key="titleColor" red="0.79607843140000001" green="0.54117647059999996" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="servicosAction:" destination="tIe-lN-zfH" eventType="touchUpInside" id="4Qv-qc-TDF"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9m1-VQ-Atc" userLabel="Endereco">
+                                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9m1-VQ-Atc" userLabel="Endereco">
                                                                 <rect key="frame" x="120" y="2.5" width="60" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="6DI-xL-T36"/>
                                                                     <constraint firstAttribute="width" constant="60" id="djN-C0-2aS"/>
                                                                 </constraints>
-                                                                <state key="normal" title="Button" image="endereco">
+                                                                <state key="normal" image="endereco">
                                                                     <color key="titleColor" red="0.79607843140000001" green="0.54117647059999996" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="enderecoAction:" destination="tIe-lN-zfH" eventType="touchUpInside" id="xge-hR-Zi4"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxD-iC-SG3" userLabel="Comentarios">
+                                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxD-iC-SG3" userLabel="Comentarios">
                                                                 <rect key="frame" x="180" y="2.5" width="60" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="a64-CP-Qif"/>
                                                                     <constraint firstAttribute="width" constant="60" id="y1H-yg-19k"/>
                                                                 </constraints>
-                                                                <state key="normal" title="Button" image="comentarios">
+                                                                <state key="normal" image="comentarios">
                                                                     <color key="titleColor" red="0.79607843140000001" green="0.54117647059999996" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="comentarioAction:" destination="tIe-lN-zfH" eventType="touchUpInside" id="a5E-rd-x9e"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TDI-N2-3KN" userLabel="Favoritos">
+                                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TDI-N2-3KN" userLabel="Favoritos">
                                                                 <rect key="frame" x="240" y="2.5" width="60" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="Xov-U4-nsc"/>
                                                                     <constraint firstAttribute="width" constant="60" id="gYs-eT-oyU"/>
                                                                 </constraints>
-                                                                <state key="normal" title="Button" image="favoritos">
+                                                                <state key="normal" image="favoritos">
                                                                     <color key="titleColor" red="0.79607843140000001" green="0.54117647059999996" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
                                                             </button>
@@ -417,20 +431,6 @@
                                     <constraint firstItem="Hjl-xF-dNz" firstAttribute="top" secondItem="ZIW-cC-xlf" secondAttribute="top" id="zjZ-Gm-huM"/>
                                 </constraints>
                             </scrollView>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x59-dg-i7Q" userLabel="loadView">
-                                <rect key="frame" x="0.0" y="0.0" width="310" height="808"/>
-                                <subviews>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="FcW-KJ-iVd">
-                                        <rect key="frame" x="136.5" y="385.5" width="37" height="37"/>
-                                        <color key="color" red="0.79607843140000001" green="0.54117647059999996" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
-                                    </activityIndicatorView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="FcW-KJ-iVd" firstAttribute="centerY" secondItem="x59-dg-i7Q" secondAttribute="centerY" id="5mE-vz-m1j"/>
-                                    <constraint firstItem="FcW-KJ-iVd" firstAttribute="centerX" secondItem="x59-dg-i7Q" secondAttribute="centerX" id="q2O-SD-b7P"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -449,6 +449,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Detalhes" id="mrz-fA-nXe">
                         <barButtonItem key="backBarButtonItem" title="Back" id="HVD-K1-ofu"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="i6s-mt-Qhp"/>
                     </navigationItem>
                     <connections>
                         <outlet property="comentariosStackView" destination="cP8-X0-oIy" id="1ND-vO-XWI"/>
@@ -461,6 +462,11 @@
                         <outlet property="mapView" destination="qra-R2-az0" id="C18-PO-3V0"/>
                         <outlet property="scrollView" destination="ZIW-cC-xlf" id="YlX-cq-bTU"/>
                         <outlet property="tituloLabel" destination="sUj-0y-vra" id="s6n-gx-Oc5"/>
+                        <outletCollection property="buttons" destination="36r-gg-l4D" collectionClass="NSMutableArray" id="3WA-jK-tYa"/>
+                        <outletCollection property="buttons" destination="Ily-Gx-3zQ" collectionClass="NSMutableArray" id="iTA-GP-UC1"/>
+                        <outletCollection property="buttons" destination="9m1-VQ-Atc" collectionClass="NSMutableArray" id="qD8-fw-RMd"/>
+                        <outletCollection property="buttons" destination="xxD-iC-SG3" collectionClass="NSMutableArray" id="iYp-TV-XjY"/>
+                        <outletCollection property="buttons" destination="TDI-N2-3KN" collectionClass="NSMutableArray" id="ISI-Sf-FJD"/>
                         <segue destination="sbh-Fz-RjJ" kind="show" identifier="segueToServices" id="Cgl-ft-wyX"/>
                     </connections>
                 </viewController>

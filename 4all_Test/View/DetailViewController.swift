@@ -27,6 +27,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var commentsVIew: UIView!
     
+    @IBOutlet var buttons: [UIButton]!
+    
+    
     //MARK: View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +42,10 @@ class DetailViewController: UIViewController {
         
         self.loadingView.alpha = 1
         self.navigationItem.title = "Loading..."
+        
+        for button in self.buttons {
+            button.imageView!.contentMode = .scaleAspectFit
+        }
         
         if let id = self.listId {
             self.viewModel?.fetchItemById(itemId: id, completion: {
@@ -80,7 +87,6 @@ class DetailViewController: UIViewController {
     }
     
     //MARK: IBActions
-    
     @IBAction func ligarAction(_ sender: Any) {
         guard let number = URL(string: "tel://" + (self.viewModel?.item?.telefone)!) else { return }
         UIApplication.shared.open(number)
@@ -101,14 +107,8 @@ class DetailViewController: UIViewController {
     
     @IBAction func comentarioAction(_ sender: Any) {
         
-        let globalPoint = comentariosStackView.superview?.convert(comentariosStackView.frame.origin, to: nil)
-        var yPosition = 0
-        if globalPoint!.y - 65 > scrollView.bounds.height {
-            yPosition = Int(scrollView.bounds.height)
-        } else {
-            yPosition = Int(globalPoint!.y - 65)
-        }
-        self.scrollView.setContentOffset(CGPoint(x: 0, y: yPosition), animated: true)
+        let targetRect = CGRect(x: 0, y: self.scrollView.contentSize.height - self.comentariosStackView.frame.height / 2 , width: 1, height: 1)
+        scrollView.scrollRectToVisible(targetRect, animated: true)
     }
     
 }
